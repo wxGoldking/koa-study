@@ -8,7 +8,7 @@ const static = require('koa-static');
 const app = new Koa();
 const router = new Router();
 
-app.keys = ['afsdfsf', 'dsgfdsgfd'];
+app.keys = ['afsdfsf', 'dsgfdsgfd', 'sgsfggtergff']; // 循环秘钥 为cookie和session加密使用
 
 
 // session
@@ -19,7 +19,7 @@ const CONFIG = {
    httpOnly: true, //cookie是否只有服务器端可以访问 httpOnly or not (default true)
    signed: true,   //签名默认true
    rolling: false,  //在每次请求时强行设置cookie，这将重置cookie过期时间（默认：false）
-   renew: false,  //(boolean) renew session when session is nearly expired,
+   renew: false,  //自动续期,
 };
 app.use(session(CONFIG, app));
 
@@ -35,7 +35,7 @@ app.use((ctx, next)=> {
 
 // cookie
 router.get('/', async ctx => {
-  let userName = ctx.cookies.get('name');
+  let userName = ctx.cookies.get('name', {signed: true});
   if(!userName){
     userName = `user_${Math.floor(Math.random()*9999999999999)}`;
     ctx.cookies.set('name', userName , {
@@ -43,6 +43,7 @@ router.get('/', async ctx => {
       expires: new Date(new Date() - 0 + 86400000), // 过期的 Date
       // path: '/', // 路径, 默认是'/'
       // domain: '127.0.0.1', // 域名
+      signed: true,  //签名默认true 设置为true时，getcookie时也要设置{signed: true}，且此时客户端随意修改会导致cookie失效
       secure: false, // 安全 cookie   默认false，设置成true表示只有 https可以访问
       httpOnly: false, // 是否只是服务器可访问 cookie, 默认是 true
       // overwrite: false // 一个布尔值，表示是否覆盖以前设置的同名的 cookie (默认是 false) ---未发现区别，都可以覆盖
