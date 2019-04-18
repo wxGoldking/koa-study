@@ -23,10 +23,6 @@ app.use(static(path.join(__dirname, './static'), {
 })); // 放在最后表示先匹配路由，放在最前表示先匹配静态资源
 
 
-app.listen(3000, (err) => { 
-  if (err){
-    console.log(err);
-    return;
-  }
+app.listen(3000, () => { 
   console.log('listening on 3000 success!') 
 })

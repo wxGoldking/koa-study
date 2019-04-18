@@ -17,8 +17,8 @@ app.use(session({
   signed:true,
 }, app))
 
-app.use(views(path.join(__dirname, './views'),{
-  extension: 'ejs' //省略扩展名时，以此设置补全
+app.use(views(path.join(__dirname, './views'), {
+  extension: 'ejs'
 }))
 
 let pool = mysql.createPool({
@@ -57,7 +57,7 @@ app.context.db = pool;
 router.get("*", async (ctx, next)=>{
   let n = ctx.session.views || 0;
   ctx.session.views = ++n;
-  next();
+  await next();
 })
 
 router.get('/', async (ctx)=>{
@@ -65,7 +65,7 @@ router.get('/', async (ctx)=>{
   ctx.state = {
     count: 1
   }
-  await ctx.render('index', {
+  await ctx.render('list', {
     title: '首页',
     views: ctx.session.views
   })
@@ -88,10 +88,6 @@ router.get('/user', async (ctx)=>{
 
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(3000, (err) => {
-  if (err){
-    console.log(err);
-    return;
-  }
-  console.log('listening on 3000 success!')
+app.listen(3000, () => { 
+  console.log('listening on 3000 success!') 
 })

@@ -20,10 +20,6 @@ app.use(static(path.join(__dirname, './static'), {
   index: '1.html'
 }))
 
-app.listen(3000, (err)=>{
-  if(err){
-    console.log(err)
-    return;
-  }
-  console.log( 'server is listening 3000');
+app.listen(3000, () => { 
+  console.log('listening on 3000 success!') 
 })

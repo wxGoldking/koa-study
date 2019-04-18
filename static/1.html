@@ -15,10 +15,9 @@
 </body>
 <script>
   window.onload = function(){
-    fetch('./todo', {
+    fetch('/todo', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
    　　　'Content-Type': 'application/json',
       },
       body: JSON.stringify({

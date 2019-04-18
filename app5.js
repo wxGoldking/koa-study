@@ -80,10 +80,6 @@ router.post('/upload', async (ctx)=>{
 app.use(router.routes()).use(router.allowedMethods());
 app.use(static(path.join(__dirname, './static')));
 
-app.listen(3000, (err) => {
-  if (err){
-    console.log(err);
-    return;
-  }
-  console.log('listening on 3000 success!')
+app.listen(3000, () => { 
+  console.log('listening on 3000 success!') 
 })
