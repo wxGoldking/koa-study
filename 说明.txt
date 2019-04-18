@@ -6,6 +6,7 @@ app5.js  koa-body上传文件处理
 app6.js  koa-compress开启gzip
 app7.js  cookie session(koa-session)
 app8.js  mysql 数据库则删改查
+app9.js  koa-views ejs模板引擎
 
 
 
