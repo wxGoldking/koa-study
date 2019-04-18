@@ -7,16 +7,20 @@
   <title>upload</title>
 </head>
 <body>
-  <button>获取用户信息</button><br>
-    name:<input type="text" name="name" id="name"><br>
-    password:<input type="text" name="password" id="password"><br>
+  <button onclick="getAllUsers()">获取用户信息</button><br>
+    name:<input type="text" id="name"><br>
+    password:<input type="password" id="password"><br>
+    newpassword:<input type="password" id="newpass"><br>
     <button onclick="register()">注册</button>
     <button onclick="login()">登录</button>
+    <button onclick="destory()">销户</button>
+    <button onclick="update()">修改密码</button>
 </body>
 <script>
   function getAllUsers() {
     fetch('/api/users').then((res=> res.json())).then(res=>console.log(res));
   }
+
   function register() {
     fetch('/api/register', {
       method: 'POST',
@@ -29,6 +33,7 @@
       })
     }).then((res=> res.json())).then(res=>console.log(res));
   }
+
   function login() {
     fetch('/api/login', {
       method: 'POST',
@@ -38,6 +43,33 @@
       body: JSON.stringify({
         name: document.querySelector('#name').value,
         password: document.querySelector('#password').value
+      })
+    }).then((res=> res.json())).then(res=>console.log(res));
+  }
+
+  function destory() {
+    fetch('/api/destory', {
+      method: 'POST',
+      headers: {
+   　　　'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: document.querySelector('#name').value,
+        password: document.querySelector('#password').value
+      })
+    }).then((res=> res.json())).then(res=>console.log(res));
+  }
+
+  function update() {
+    fetch('/api/update', {
+      method: 'POST',
+      headers: {
+   　　　'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: document.querySelector('#name').value,
+        password: document.querySelector('#password').value,
+        newpass: document.querySelector('#newpass').value
       })
     }).then((res=> res.json())).then(res=>console.log(res));
   }

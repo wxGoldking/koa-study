@@ -3,7 +3,9 @@ app2.js  koa-router路由中间件
 app3.js  koa-static处理静态资源
 app4.js  get,post请求参数处理
 app5.js  koa-body上传文件处理
-app6.js  开启gzip
+app6.js  koa-compress开启gzip
+app7.js  cookie session(koa-session)
+app8.js  mysql, co-mysql 数据库则删改查
 
 
 

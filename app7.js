@@ -8,7 +8,7 @@ const static = require('koa-static');
 const app = new Koa();
 const router = new Router();
 
-app.keys = ['afsdfsf', 'dsgfdsgfd', 'sgsfggtergff']; // 循环秘钥 为cookie和session加密使用
+app.keys = ['afsdfsf', 'dsgfdsgfd', 'sgsfggtergff']; // 循环秘钥 为cookie和session加密签名使用
 
 
 // session
