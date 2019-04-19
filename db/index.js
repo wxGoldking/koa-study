@@ -26,7 +26,6 @@ pool._query = function (sql, pramas){
         })
       }
     })
-
   })
 }
 

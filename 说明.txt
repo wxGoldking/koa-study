@@ -7,6 +7,7 @@ app6.js  koa-compress开启gzip
 app7.js  cookie session(koa-session)
 app8.js  mysql 数据库增删改查
 app9.js  koa-views ejs模板引擎
+server.js request, request-promise后端发送请求
 
 
 

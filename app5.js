@@ -61,7 +61,7 @@ router.post('/upload', async (ctx)=>{
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath);
   }
-  files.forEach((file, i) => {
+  files.forEach((file) => {
     // 创建可读流
     const reader = fs.createReadStream(file.path);
     // 文件写入路径
@@ -80,6 +80,6 @@ router.post('/upload', async (ctx)=>{
 app.use(router.routes()).use(router.allowedMethods());
 app.use(static(path.join(__dirname, './static')));
 
-app.listen(3000, () => { 
-  console.log('listening on 3000 success!') 
+app.listen(3000, () => {
+  console.log('listening on 3000 success!')
 })
