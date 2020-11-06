@@ -13,6 +13,15 @@ app.use(body());
 
 app.context.db = db;
 
+// 一个捕捉错误的中间件
+app.use(async (ctx, next) => {
+  try{
+    await next();
+  }catch(err){
+    console.log(err);
+    ctx.throw(500, 'database error')
+  }
+})
 
 async function verify(name, password, ctx){
   try {
@@ -34,12 +43,12 @@ async function verify(name, password, ctx){
 
 
 router.get('/api/users', async (ctx)=>{
-  try {
+  // try {
     const result = await ctx.db._query('SELECT * FROM account');
     ctx.body = result;
-  }catch(e){
-    ctx.throw(500, 'database error')
-  }
+  // }catch(e){
+  //   ctx.throw(500, 'database error')
+  // }
 })
 
 // 增
